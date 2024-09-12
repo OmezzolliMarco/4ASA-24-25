@@ -1,3 +1,10 @@
+# Crea un programma che gestisca un elenco di studenti come oggetti. 
+# Ogni studente deve essere identificato da un nome, un cognome e un array 
+# contenente un numero arbitrario di voti. Dovranno essere predisposti i 
+# metodi per aggiungere un voto,
+# calcolare la media dei voti inseriti e inserire tutti i dettagli 
+# separati con una virgola in un file csv.
+
 import csv
 
 class Studente:
