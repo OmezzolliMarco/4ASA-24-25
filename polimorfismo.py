@@ -2,7 +2,7 @@ class Animale():
     def __init__(self, nome):
         self.nome = nome
     def fai_suono(self):
-        print("Un suono")
+        pass
 
 #creo la classe gatto che eredita da Animale
 class Gatto(Animale):
