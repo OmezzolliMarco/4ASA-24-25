@@ -47,7 +47,7 @@ class Biblioteca:
     def carica_file(self):
         nomefile = "listalibri.txt"
         with open(nomefile, "r") as file:
-            for line in file:
+            for line in file: #line è una variabile stringa che conterrà ogni riga del documento presa una alla volta
                 #print(line.strip()) #metodo strip rimuove a capo alla fine della stringa
                 #prendere ogni dato separatamente
                 line = line.strip()
