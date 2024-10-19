@@ -38,12 +38,18 @@ pagamenti = [PayPal("Paypal"), CartaDiCredito("CC")]
 
 scelta = 0
 while scelta != 3:
-    scelta = int(input("Inserisci con cosa vuoi pagare: 1-Paypal, 2-Carta di credito, 3 - Uscire"))
-    if scelta == 1:
-        effettua_pagamento(pagamenti[0], 10)
-    elif scelta == 2:
-        effettua_pagamento(cc, 15)
-    elif scelta == 3:
-        print("Hai deciso di uscire dal programma")
-    else:
-        print("Valore non riconosciuto, riprova")
+
+    try:
+        scelta = int(input("Inserisci con cosa vuoi pagare: 1-Paypal, 2-Carta di credito, 3 - Uscire"))
+        if scelta == 1:
+            effettua_pagamento(pagamenti[0], 10)
+        elif scelta == 2:
+            effettua_pagamento(cc, 15)
+        elif scelta == 3:
+            print("Hai deciso di uscire dal programma")
+        else:
+            print("Valore non riconosciuto, riprova")
+    except:
+        print("Hai sbagliato")
+    
+    
