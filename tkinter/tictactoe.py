@@ -10,6 +10,10 @@ class Plancia():
         self.lista_pulsanti = []
 
         self.player = "X"
+        global griglia
+        for i in range(3):
+            for j in range(3):
+                griglia[i][j] = ""
 
         self.creaTavoloGioco()
         self.root.columnconfigure(0, weight=1)
@@ -27,9 +31,32 @@ class Plancia():
             self.lista_pulsanti.append(button)
 
     def premiPulsante(self, i):
-        self.lista_pulsanti[i].configure(text=self.player)
+        if self.lista_pulsanti[i].cget("text") == "X" or self.lista_pulsanti[i].cget("text") == "O":
+            #non devo fare niente
+            pass
+        else:
+            self.lista_pulsanti[i].configure(text=self.player)
+            #trovo in che posizione della griglia si trova
+            righe = i//3
+            colonne = i%3
+            griglia[righe][colonne] = self.player
+
+            self.controllaVincita()
+
+            if self.player == "X":
+                self.player = "O"
+            else:
+                self.player = "X"
+
 #main 
 root = tk.Tk()
+
+#creazione della griglia per i controlli
+griglia = []
+for i in range(3):
+    griglia.append([])
+    for j in range(3):
+        griglia[i].append("")
 
 #crea la plancia di gioco
 plancia = Plancia(root)
