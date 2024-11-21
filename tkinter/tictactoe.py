@@ -1,4 +1,5 @@
 import tkinter as tk
+from tkinter import messagebox
 
 #classe Plancia
 class Plancia():
@@ -11,9 +12,9 @@ class Plancia():
 
         self.player = "X"
         global griglia
-        for i in range(3):
-            for j in range(3):
-                griglia[i][j] = ""
+        # for i in range(3):
+        #     for j in range(3):
+        #         griglia[i][j] = ""
 
         self.creaTavoloGioco()
         self.root.columnconfigure(0, weight=1)
@@ -41,13 +42,52 @@ class Plancia():
             colonne = i%3
             griglia[righe][colonne] = self.player
 
-            self.controllaVincita()
+            winner = self.controllaVincita()
+
+            #comunicare chi ha vinto
+            if winner: #se non è None
+                if winner == "X":
+                    messagebox.showinfo("Vincita", "Vince il giocatore X")
+                elif winner == "O":
+                    messagebox.showinfo("Vincita", "Vince il giocatore O")
+                elif winner == "Pareggio":
+                    messagebox.showinfo("Pareggio", "Pareggio")
 
             if self.player == "X":
                 self.player = "O"
             else:
                 self.player = "X"
 
+    def controllaVincita(self):
+        for i in range(3):
+            #righe
+            if griglia[i][0] == griglia[i][1] == griglia[i][2] != "":
+                return griglia[i][0]
+            #colonne
+            if griglia[0][i] == griglia[1][i] == griglia[2][i] != "":
+                return griglia[0][1]
+        #controllo delle diagonali
+        if griglia[0][0] == griglia[1][1] == griglia[2][2] != "":
+            return griglia[0][0]
+        if griglia[0][2] == griglia[1][1] == griglia[2][0] != "":
+            return griglia[0][2]
+
+        #controllare se ci sono caselle libere, se non ce ne sono allora pareggio
+
+        if all(all(cell != "" for cell in row) for row in griglia):
+            return "Pareggio"
+        else:
+            return None
+        #opzione con istruzioni classiche
+        # controllo = False
+        # for i in range(3):
+        #     for j in range(3):
+        #         if griglia[i][j] == "":
+        #             controllo = True
+        # if controllo:
+        #     return None
+        # else:
+        #     return "Pareggio"
 #main 
 root = tk.Tk()
 
