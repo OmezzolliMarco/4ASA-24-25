@@ -52,11 +52,22 @@ class Plancia():
                     messagebox.showinfo("Vincita", "Vince il giocatore O")
                 elif winner == "Pareggio":
                     messagebox.showinfo("Pareggio", "Pareggio")
+                #resettare la board di gioco
+                self.resetGame()
 
             if self.player == "X":
                 self.player = "O"
             else:
                 self.player = "X"
+
+    def resetGame(self):
+        #reset visuale
+        for button in self.lista_pulsanti:
+            button.configure(text="")
+        #reset della griglia di controllo
+        for i in range(3):
+            for j in range(3):
+                griglia[i][j] = ""
 
     def controllaVincita(self):
         for i in range(3):
